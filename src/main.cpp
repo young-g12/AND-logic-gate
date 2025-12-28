@@ -2,24 +2,42 @@
 
 const int buttonPin1 = 2;
 const int buttonPin2 = 4;
-int buttonState = 0;
+const int ledPin1 = 7;
+const int ledPin2 = 6;
+const int ledPin3 = 8;
+int buttonState1 = 0;
+int buttonState2 = 0;
 
 void setup() {
-pinMode(7 , OUTPUT);
-pinMode(buttonPin1, INPUT);
-pinMode(buttonPin2, INPUT);
+pinMode(ledPin1, OUTPUT);
+pinMode(ledPin2, OUTPUT);
+pinMode(ledPin3, OUTPUT);
+pinMode(buttonPin1, INPUT_PULLUP);
+pinMode(buttonPin2, INPUT_PULLUP);
 }
 
 void loop() {
-   buttonState = digitalRead(buttonPin1);
+   buttonState1 = digitalRead(buttonPin1);
+   buttonState2 = digitalRead(buttonPin2);
 
-  // check if the pushbutton is pressed. If it is, the buttonState is HIGH:
-  if (buttonState == HIGH) {
-    // turn LED on:
-    digitalWrite(7, HIGH);
-  } else {
-    // turn LED off:
-    digitalWrite(7, LOW);
-}
+  // if (buttonState == HIGH) {
+  //   // turn LED on:
+  //   digitalWrite(ledPin, HIGH);
+  // } else {
+  //   // turn LED off:
+  //   digitalWrite(ledPin, LOW);
+  // }
+   if (buttonState1 == HIGH && buttonState2 == HIGH) { 
+    digitalWrite(ledPin3, HIGH);
+  } else if (buttonState1 == HIGH) { 
+     digitalWrite(ledPin1, HIGH);
+  } else if (buttonState2 == HIGH) { 
+    digitalWrite(ledPin2, HIGH);
+   
+  } else if (buttonState1 == LOW && buttonState2 == LOW) {
+    digitalWrite(ledPin1, LOW);
+    digitalWrite(ledPin2, LOW);
+    digitalWrite(ledPin3, LOW);
+  } 
 }
 
